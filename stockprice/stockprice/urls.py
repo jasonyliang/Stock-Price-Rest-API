@@ -18,6 +18,7 @@ from django.contrib import admin
 from rest_framework import routers
 from stockapp import views
 
+
 router = routers.DefaultRouter()
 router.register(r'stocks', views.StocksViewSet)
 
@@ -25,4 +26,6 @@ router.register(r'stocks', views.StocksViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
+    url(r'^register/$', views.CreateUser.as_view(), name='user'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
